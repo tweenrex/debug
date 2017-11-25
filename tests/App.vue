@@ -29,8 +29,9 @@ export default {
         }
     },
     mounted() {
-        var target = document.querySelector('#image')
-        var tween = TweenRex({
+        let target = document.querySelector('#image')
+
+        let tween = TweenRex({
             duration: 3500,
             subscribe: interpolate({
                 targets: target,
@@ -46,6 +47,11 @@ export default {
         })
 
         tween.play()
+
+        this.tween = tween
+    },
+    destroyed() {
+        this.tween.pause()
     }
 }
 </script>

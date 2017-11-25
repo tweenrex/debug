@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --open --hot --config ./config/webpack.test.config.js",
     "build": "webpack --config ./config/webpack.build.config.js --progress --hide-modules"
   },
-  "main": "lib/main.js",
+  "main": "lib/index.js",
   "dependencies": {
     "@tweenrex/core": "^1.2.9",
     "@tweenrex/render": "^1.2.5",
@@ -33,5 +33,10 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
-  }
+  },
+  "types": "./types/index",
+  "typings": "./types/index",
+  "typeRoots": [
+      "node_modules/@types"
+  ]
 }

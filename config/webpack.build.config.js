@@ -2,11 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/lib',
-        filename: 'main.js',
+        filename: 'index.js',
         libraryTarget: 'commonjs'
     },
     module: {

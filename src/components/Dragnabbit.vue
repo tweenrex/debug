@@ -33,6 +33,15 @@ export default {
             this.x = position.x
             this.y = position.y
         }
+        window.addEventListener('resize', this.onResize)
+    },
+    mounted() {
+        if (!this.isInViewPort()) {
+            this.savePosition()
+        }
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.onResize)
     },
 
     methods: {
@@ -60,21 +69,38 @@ export default {
             this.offsetX = e.clientX - rect.left
             this.offsetY = e.clientY - rect.top
             this.setEvents()
+
+            if (!this.isInViewPort()) {
+                this.savePosition()
+            }
+
             e.preventDefault()
         },
-
+        isInViewPort() {
+            var rect = this.$el.getBoundingClientRect()
+            var totalWidth = window.innerWidth
+            if (rect.right > totalWidth) {
+                this.x = window.innerWidth - rect.width
+                return false
+            }
+            return true
+        },
         onUp(e) {
             this.dragging = false
             this.setEvents()
             e.preventDefault()
         },
-
         onMove(e) {
             if (this.dragging) {
                 e.preventDefault()
                 e = e.touches ? e.touches[0] : e
                 this.x = e.clientX - this.offsetX
                 this.y = e.clientY - this.offsetY
+                this.savePosition()
+            }
+        },
+        onResize() {
+            if (!this.isInViewPort()) {
                 this.savePosition()
             }
         },

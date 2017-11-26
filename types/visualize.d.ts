@@ -1,6 +1,6 @@
-export declare function visualize(easing?: IEasing): ITweenRex;
-export declare function visualize(opts?: IVisualizeOptions): ITweenRex;
-export declare function visualize(opts?: IVisualizeOptions | IEasing): ITweenRex;
+export declare function visualize(easing?: IEasing): IEasing;
+export declare function visualize(opts?: IVisualizeOptions): IEasing;
+export declare function visualize(opts?: IVisualizeOptions | IEasing): IEasing;
 
 export interface IEasing {
     (n: number): number

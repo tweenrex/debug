@@ -1,9 +1,10 @@
 <template>
-<dragnabbit :save-id="title" :title="title">
-    <div class="easing-graph">
-        <div class="graph">
-            <svg class="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 140 140">
-            <g class="grid">
+<div class="easing-graph--root">
+<dragnabbit :title="title">
+    <div class="easing-graph--contents">
+        <div class="easing-graph--graph">
+            <svg class="easing-graph--visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 140 140">
+            <g class="easing-graph--grid">
                 <line x1="0" y1="0" x2="0" y2="100"></line>
                 <line x1="0" y1="0" x2="100" y2="0"></line>
                 <line x1="25" y1="0" x2="25" y2="100"></line>
@@ -15,21 +16,22 @@
                 <line x1="100" y1="0" x2="100" y2="100"></line>
                 <line x1="0" y1="100" x2="100" y2="100"></line>
             </g>
-            <g class="axes">
+            <g class="easing-graph--axes">
                 <path d="M0,0V100H100"></path>
             </g>
-            <path :d="easingPath" class="easing-path" ></path>
-            <circle class="ball" :style="{ transform: ballTransform }" cx="0" cy="100" r="4"></circle>
+            <path :d="easingPath" class="easing-graph--easing-path" ></path>
+            <circle class="easing-graph--ball" :style="{ transform: ballTransform }" cx="0" cy="100" r="4"></circle>
             </svg>
         </div>
          <div>
-            <span class="easing-graph-label">let n = </span>
-            <span class="easing-graph-value"> {{xFormatted}}; </span>
-            <span class="easing-graph-label">f(n) = </span>
-            <span class="easing-graph-value">{{yFormatted}}</span>
+            <span class="easing-graph--graph-label">let n = </span>
+            <span class="easing-graph--graph-value"> {{xFormatted}}; </span>
+            <span class="easing-graph--graph-label">f(n) = </span>
+            <span class="easing-graph--graph-value">{{yFormatted}}</span>
         </div>
     </div>
 </dragnabbit>
+</div>
 </template>
 
 <script>
@@ -78,7 +80,7 @@ export default {
 </script>
 
 <style scoped>
-.easing-graph {
+.easing-graph--contents {
     background-color: white;
     color: #333333;
     font-family: Arial;
@@ -89,49 +91,48 @@ export default {
     padding-right: 13px;
     text-align: center;
 }
-.easing-graph-label {
+.easing-graph--graph--label {
     font-style: italic;
 }
-.easing-graph-value {
+.easing-graph--graph-value {
     color: #7bc7c4;
     font-weight: bold;
 }
-.easing-graph-title {
+.easing-graph--graph-title {
     font-weight: bold;
 }
-.graph {
+.easing-graph--graph {
     height: 180px;
-    width: 180px;
-    padding-top: 10px;
     padding-bottom: 10px;
+    width: 180px;
 }
-.visualizer {
+.easing-graph--visualizer {
     height: 100%;
     left: 50%;
     overflow: visible;
     position: absolute;
-    transform: translate(-50%, -50%);
     top: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
 }
-.grid > line {
+.easing-graph--grid > line {
     stroke: #e2e2e2;
     stroke-width: 0.5;
     stroke-linecap: round;
 }
-.axes > path {
+.easing-graph--axes > path {
     fill: transparent;
     stroke: #cccccc;
     stroke-width: 1;
     stroke-linecap: round;
 }
-.easing-path {
+.easing-graph--easing-path {
     fill: transparent;
     stroke: #808080;
     stroke-width: 1;
     stroke-opacity: 0.6;
 }
-.ball {
+.easing-graph--ball {
     fill: #7bc7c4;
     stroke: transparent;
 }

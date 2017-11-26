@@ -1,9 +1,8 @@
 <template>
-   <div
-    class="dragnabbit"
+   <div class="dragnabbit--root"
     :style="{ transform: 'translate3d(' + x + 'px,' + y + 'px,' + ( dragging ? 5 : 0 ) + 'px)' }">
-        <div class="content-wrapper">
-            <div class="drag-title" :class="{ 'dragnabbit--dragging' : dragging }" @mousedown="onDown" @touchstart="onDown">{{title}}</div>
+        <div class="dragnabbit--content-wrapper">
+            <div class="dragnabbit--title" :class="{ 'dragnabbit--dragging' : dragging }" @mousedown="onDown" @touchstart="onDown">{{title}}</div>
             <slot></slot>
         </div>
     </div>
@@ -11,12 +10,13 @@
 
 <script>
 import { save, load } from '../utilities/storage'
+import { stringHash } from '../utilities/hash'
 
 const positionKeyPrefix = 'tweenrex.dragnabbit'
 
 export default {
     name: 'dragnabbit',
-    props: ['saveId', 'title'],
+    props: ['title'],
     data: () => ({
         dragging: false,
         x: 10,
@@ -24,6 +24,11 @@ export default {
         offsetX: 0,
         offsetY: 0
     }),
+    computed: {
+        saveId() {
+            return stringHash(this.title || '')
+        }
+    },
     created() {
         // attempt to load position from previous load
         var position = load(positionKeyPrefix, this.saveId)
@@ -116,7 +121,7 @@ export default {
 </script>
 
 <style scoped>
-.dragnabbit {
+.dragnabbit--root {
     display: inline-block;
     position: fixed;
     top: 0;
@@ -124,15 +129,16 @@ export default {
 }
 
 /* Stylistic choices */
-.dragnabbit {
+.dragnabbit--root {
     font-family: Arial;
     z-index: 9000;
     will-change: transform;
     transform-style: preserve-3d;
 }
 
-.drag-title {
+.dragnabbit--title {
     background-color: #f1f1f1;
+    border-bottom: solid thin lightgray;
     font-size: 10pt;
     font-weight: bold;
     width: 100%;
@@ -147,11 +153,11 @@ export default {
     cursor: grabbing;
 }
 
-.content-wrapper {
+.dragnabbit--content-wrapper {
     outline: dashed 2px #222;
 }
 
-.dragnabbit:after {
+.dragnabbit--root:after {
     content: ' ';
     background: #000;
     box-shadow: 0 0px 20px 5px #000;

@@ -1,6 +1,6 @@
 import Vue from 'vue'
+import { stringHash } from './utilities/hash'
 import EasingGraph from './components/EasingGraph'
-import { debug } from 'util'
 
 const debugAttName = 'tweenrex-visualize-id'
 
@@ -15,7 +15,8 @@ export function visualize(options) {
 
     // ensure an easing function and title based on function name
     const easing = options.easing || linear
-    const title = options.title || options.easing.name
+    const title = options.title || options.easing.name || 'Visualizer'
+    const id = '_' + stringHash(title)
 
     // turn off to deactive effects of this wrapped function
     let isActive = true
@@ -23,7 +24,7 @@ export function visualize(options) {
 
     // attempt to find an existing instance.
     // This is intended to avoid duplicate controls during hot-reloading
-    let el = document.querySelector('[' + debugAttName + '=' + title + ']')
+    let el = document.querySelector('[' + debugAttName + '=' + id + ']')
     if (el && el.__vue__) {
         // use existing instance if available
         instance = el.__vue__
@@ -46,7 +47,7 @@ export function visualize(options) {
                 // use render function here to pass props directly
                 const data = {
                     attrs: {
-                        [debugAttName]: title
+                        [debugAttName]: id
                     }
                 };
 
@@ -71,6 +72,6 @@ export function visualize(options) {
             instance.$data.x = offset
         }
         // pass through function to whatever called it
-        return offset
+        return easing(offset)
     }
 }

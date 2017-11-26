@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import PlaybackControl from './components/PlaybackControl'
-import { debug } from 'util'
+import { stringHash } from './utilities/hash'
 
 const debugAttName = 'tweenrex-player-id'
 
@@ -8,13 +8,14 @@ export function player(tween) {
     // replace as options if simple function is passed
     let options = typeof tween.tween !== 'undefined' ? tween : { tween }
     const title = options.title || 'Player'
+    const id = '_' + stringHash(title)
 
     // turn off to deactive effects of this wrapped function
     let isActive = true
 
     // attempt to find an existing instance.
     // This is intended to avoid duplicate controls during hot-reloading
-    let el = document.querySelector('[' + debugAttName + '=' + title + ']')
+    let el = document.querySelector('[' + debugAttName + '=' + id + ']')
     if (el && el.__vue__) {
         // use existing instance if available
         el.__vue__.$data.controller = options.tween
@@ -31,7 +32,7 @@ export function player(tween) {
                 // use render function here to pass props directly
                 const data = {
                     attrs: {
-                        [debugAttName]: title
+                        [debugAttName]: id
                     }
                 };
 

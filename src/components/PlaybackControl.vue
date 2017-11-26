@@ -1,8 +1,8 @@
 <template>
-    <div class="playback-control">
-        <dragnabbit :saveId="title" :title="title">
-            <div class="playback-control-contents">
-                <div class="progress-wrapper">
+    <div class="playback-control--root">
+        <dragnabbit :title="title">
+            <div class="playback-control--contents">
+                <div class="playback-control--scubber-section">
                     <input class="playback-control--scrubber" type="range" min="0" :max="controller.duration" step="1"
                         :value="controller.currentTime | round"
                         @mousedown="scrubberMouseDown"
@@ -30,8 +30,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="playback-time">
-                        <span class="playback-time-value">{{controller.currentTime | round}}</span>
+                    <div class="playback-control--right-section">
+                        <span class="playback-control--time">{{controller.currentTime | round}}</span>
                         <span>/</span> {{controller.duration}} ms
                     </div>
                 </div>
@@ -42,13 +42,11 @@
 
 <script>
 import Dragnabbit from './Dragnabbit'
-import Slider from './Slider'
 
 export default {
     name: 'playback-control',
     props: ['controller', 'title'],
     components: {
-        slider: Slider,
         dragnabbit: Dragnabbit
     },
     filters: {
@@ -114,33 +112,31 @@ export default {
 </script>
 
 <style scoped>
-.playback-control {
+.playback-control--root {
     font-family: Arial;
     font-size: 10pt;
 }
-.playback-control-contents {
-    width: 320px;
+.playback-control--contents {
     background-color: white;
     text-align: center;
+    width: 320px;
 }
-.progress-wrapper {
+.playback-control--scubber-section {
     padding-left: 10px;
     padding-right: 10px;
 }
 .playback-control--controls {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 .playback-control--controls > * {
     flex-basis: 33.333%;
 }
-.playback-control--left-section {
-    text-align: left;
-}
+
 .playback-control--rate-input {
     color: #7bc7c4;
     border: none;
@@ -150,77 +146,81 @@ export default {
     width: 40px;
 }
 .playback-control--play-button {
-    width: 20px;
-    height: 20px;
+    cursor: pointer;
     display: inline-block;
+    height: 20px;
+    width: 20px;
 }
-.playback-time {
+.playback-control--left-section {
+    text-align: left;
+}
+.playback-control--right-section {
     text-align: right;
 }
-.playback-time-value {
+.playback-control--time {
     color: #7bc7c4;
     font-weight: bold;
 }
 .playback-control--scrubber {
     -webkit-appearance: none;
-    width: 100%;
     margin: 6.65px 0;
+    width: 100%;
 }
 .playback-control--scrubber:focus {
     outline: none;
 }
 .playback-control--scrubber::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 3.7px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #d2d2d2;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     border-radius: 0px;
     border: 0.2px solid #000000;
+    cursor: pointer;
+    height: 3.7px;
+    width: 100%;
 }
 .playback-control--scrubber::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #ffffff;
     box-shadow: 0px 0px 0px rgba(0, 0, 62, 0.67), 0px 0px 0px rgba(0, 0, 88, 0.67);
     border: 1.3px solid #000000;
-    height: 17px;
-    width: 17px;
     border-radius: 11px;
-    background: #ffffff;
     cursor: pointer;
-    -webkit-appearance: none;
+    height: 17px;
     margin-top: -6.85px;
+    width: 17px;
 }
 .playback-control--scrubber:focus::-webkit-slider-runnable-track {
     background: #ffffff;
 }
 .playback-control--scrubber::-moz-range-track {
-    width: 100%;
-    height: 3.7px;
-    cursor: pointer;
-    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     background: #d2d2d2;
     border-radius: 0px;
     border: 0.2px solid #000000;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    cursor: pointer;
+    height: 3.7px;
+    width: 100%;
 }
 .playback-control--scrubber::-moz-focus-outer {
     /* remove focus border in firefox */
     border: 0;
 }
 .playback-control--scrubber::-moz-range-thumb {
+    background: #ffffff;
     box-shadow: 0px 0px 0px rgba(0, 0, 62, 0.67), 0px 0px 0px rgba(0, 0, 88, 0.67);
     border: 1.3px solid #000000;
+    border-radius: 11px;
+    cursor: pointer;
     height: 17px;
     width: 17px;
-    border-radius: 11px;
-    background: #ffffff;
-    cursor: pointer;
 }
 .playback-control--scrubber::-ms-track {
-    width: 100%;
-    height: 3.7px;
+    color: transparent;
     cursor: pointer;
     background: transparent;
     border-color: transparent;
-    color: transparent;
+    height: 3.7px;
+    width: 100%;
 }
 .playback-control--scrubber::-ms-fill-lower {
     background: #929292;
@@ -237,12 +237,11 @@ export default {
 .playback-control--scrubber::-ms-thumb {
     box-shadow: 0px 0px 0px rgba(0, 0, 62, 0.67), 0px 0px 0px rgba(0, 0, 88, 0.67);
     border: 1.3px solid #000000;
-    height: 17px;
-    width: 17px;
+    height: 3.7px;
     border-radius: 11px;
     background: #ffffff;
     cursor: pointer;
-    height: 3.7px;
+    width: 17px;
 }
 .playback-control--scrubber:focus::-ms-fill-lower {
     background: #d2d2d2;

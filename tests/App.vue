@@ -8,24 +8,19 @@
 <script>
 import { TweenRex } from '@tweenrex/core'
 import { interpolate } from '@tweenrex/render'
-import { easeInOutExpo } from 'just-curves'
+import { cubicBezier } from 'just-curves'
 import { player, visualize } from '../src'
 
 import Dragnabbit from '../src/components/Dragnabbit'
 import EasingGraph from '../src/components/EasingGraph'
+
+const easing = cubicBezier(0.5, 0, 0.5, 1)
 
 export default {
     name: 'app',
     components: {
         dragnabbit: Dragnabbit,
         'easing-graph': EasingGraph
-    },
-    data() {
-        return {
-            easing: easeInOutExpo,
-            x: 0,
-            y: 0
-        }
     },
     mounted() {
         let target = document.querySelector('#image')
@@ -34,7 +29,7 @@ export default {
             duration: 3500,
             subscribe: interpolate({
                 targets: target,
-                easing: visualize(this.easing),
+                easing: visualize(easing),
                 transform: ['rotateY(0deg)', 'rotateY(360deg)']
             }),
             onPlay() {

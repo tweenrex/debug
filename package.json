@@ -2,7 +2,7 @@
     "name": "@tweenrex/debug",
     "description": "Debug tools for TweenRex",
     "homepage": "https://github.com/tweenrex/tweenrex#readme",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "TweenRex",
     "license": "MIT",
     "bugs": {

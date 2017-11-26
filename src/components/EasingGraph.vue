@@ -1,7 +1,6 @@
 <template>
-<dragnabbit :save-id="title">
+<dragnabbit :save-id="title" :title="title">
     <div class="easing-graph">
-        <div class="easing-graph-title">{{title}}</div>
         <div class="graph">
             <svg class="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 140 140">
             <g class="grid">

@@ -1,2 +1,2 @@
-import Vue from 'vue'
-export { visualize } from './visualize';
+export { visualize } from './visualize'
+export { player } from './player';

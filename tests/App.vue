@@ -9,7 +9,7 @@
 import { TweenRex } from '@tweenrex/core'
 import { interpolate } from '@tweenrex/render'
 import { easeInOutExpo } from 'just-curves'
-import { visualize } from '../src/visualize'
+import { player, visualize } from '../src'
 
 import Dragnabbit from '../src/components/Dragnabbit'
 import EasingGraph from '../src/components/EasingGraph'
@@ -22,7 +22,6 @@ export default {
     },
     data() {
         return {
-            msg: 'Welcome to Your Vue.js App',
             easing: easeInOutExpo,
             x: 0,
             y: 0
@@ -45,6 +44,8 @@ export default {
                 tween.restart()
             }
         })
+
+        player(tween)
 
         tween.play()
 

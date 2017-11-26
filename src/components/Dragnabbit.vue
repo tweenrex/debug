@@ -1,13 +1,11 @@
 <template>
    <div
-    @mousedown="onDown"
-    @touchstart="onDown"
     class="dragnabbit"
-    :class="{ 'dragnabbit--dragging' : dragging }"
     :style="{ transform: 'translate3d(' + x + 'px,' + y + 'px,' + ( dragging ? 5 : 0 ) + 'px)' }">
-       <div class="content-wrapper">
+        <div class="content-wrapper">
+            <div class="drag-title" :class="{ 'dragnabbit--dragging' : dragging }" @mousedown="onDown" @touchstart="onDown">{{title}}</div>
             <slot></slot>
-       </div>
+        </div>
     </div>
 </template>
 
@@ -18,7 +16,7 @@ const positionKeyPrefix = 'tweenrex.dragnabbit'
 
 export default {
     name: 'dragnabbit',
-    props: ['saveId'],
+    props: ['saveId', 'title'],
     data: () => ({
         dragging: false,
         x: 10,
@@ -123,18 +121,30 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    cursor: grab;
-}
-
-.dragnabbit--dragging {
-    cursor: grabbing;
 }
 
 /* Stylistic choices */
 .dragnabbit {
+    font-family: Arial;
     z-index: 9000;
     will-change: transform;
     transform-style: preserve-3d;
+}
+
+.drag-title {
+    background-color: #f1f1f1;
+    font-size: 10pt;
+    font-weight: bold;
+    width: 100%;
+    cursor: grab;
+    position: relative;
+    z-index: 9000;
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.dragnabbit--dragging {
+    cursor: grabbing;
 }
 
 .content-wrapper {
@@ -143,18 +153,18 @@ export default {
 
 .dragnabbit:after {
     content: ' ';
-    display: block;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: #000;
-    opacity: 0.1;
     box-shadow: 0 0px 20px 5px #000;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
     transform: translateZ(-2px);
     transition: opacity 0.4s ease-in-out, transform 0.4s cubic-bezier(0.15, 0.8, 0.3, 1.2);
+    width: 100%;
+    z-index: -1;
 }
 
 .dragnabbit--dragging:after {

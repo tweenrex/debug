@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import EasingGraph from './components/EasingGraph.vue'
+import EasingGraph from './components/EasingGraph'
 import { debug } from 'util'
 
-const debugAttName = 'tween-rex-debug-id'
+const debugAttName = 'tweenrex-visualize-id'
 
 function linear(o) {
     // default easing, returns same as passed

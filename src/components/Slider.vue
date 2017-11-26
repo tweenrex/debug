@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { clamp } from '../utilities/math'
+
 export default {
     name: 'slider',
     created() {
@@ -57,7 +59,7 @@ export default {
         },
         dragged(evt) {
             const rect = this.trackEl.getBoundingClientRect()
-            const x = minMax(evt.clientX - rect.x, 0, rect.width)
+            const x = clamp(evt.clientX - rect.x, 0, rect.width)
 
             this.$emit('change', Math.round(x * this.max / rect.width))
         },
@@ -99,7 +101,7 @@ export default {
     width: 20px;
     box-sizing: border-box;
     background-color: white;
-    border: solid 1px black;
+    border: solid 1px #0d0d0d;
     border-radius: 30px;
     position: relative;
     z-index: 1;
@@ -114,6 +116,6 @@ export default {
     top: calc(50% - 3px);
     height: 6px;
     width: 100%;
-    background-color: black;
+    background-color: #0d0d0d;
 }
 </style>

@@ -57,5 +57,8 @@
     "typings": "./types/index",
     "typeRoots": [
         "node_modules/@types"
-    ]
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
 }

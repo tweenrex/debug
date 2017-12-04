@@ -2,7 +2,7 @@
     "name": "@tweenrex/debug",
     "description": "Debug tools for TweenRex",
     "homepage": "https://github.com/tweenrex/tweenrex#readme",
-    "version": "0.0.6",
+    "version": "1.4.0",
     "author": "TweenRex",
     "license": "MIT",
     "bugs": {
@@ -23,8 +23,8 @@
     },
     "main": "lib/index.js",
     "dependencies": {
-        "@tweenrex/core": "^1.2.9",
-        "@tweenrex/render": "^1.2.5",
+        "@tweenrex/core": "^1.4.0",
+        "@tweenrex/render": "^1.4.0",
         "vue": "^2.4.4"
     },
     "browserslist": [

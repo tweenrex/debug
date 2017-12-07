@@ -1,64 +1,64 @@
 {
-    "name": "@tweenrex/debug",
-    "description": "Debug tools for TweenRex",
-    "homepage": "https://github.com/tweenrex/tweenrex#readme",
-    "version": "1.4.0",
-    "author": "TweenRex",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/tweenrex/tweenrex/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tweenrex/tweenrex"
-    },
-    "scripts": {
-        "build": "rollup --config ./config/rollup.build.js",
-        "clean": "node_modules/.bin/del-cli -f lib",
-        "postversion": "git push --follow-tags && npm publish --access=\"public\"",
-        "preversion": "npm run rebuild",
-        "rebuild": "npm run clean && npm run build",
-        "start": "npm run test",
-        "test": "webpack-dev-server --open --hot --config ./config/webpack.test.config.js"
-    },
-    "main": "lib/index.js",
-    "dependencies": {
-        "@tweenrex/core": "^1.4.0",
-        "@tweenrex/render": "^1.4.0",
-        "vue": "^2.4.4"
-    },
-    "browserslist": [
-        "> 1%",
-        "last 2 versions",
-        "not ie <= 8"
-    ],
-    "devDependencies": {
-        "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-preset-env": "^1.6.0",
-        "babel-preset-es2015-rollup": "^3.0.0",
-        "babel-preset-stage-3": "^6.24.1",
-        "cross-env": "^5.0.5",
-        "css-loader": "^0.28.7",
-        "del-cli": "^1.1.0",
-        "file-loader": "^1.1.4",
-        "just-curves": "^0.2.0",
-        "rollup": "^0.52.0",
-        "rollup-plugin-babel": "^3.0.2",
-        "rollup-plugin-node-resolve": "^3.0.0",
-        "rollup-plugin-replace": "^2.0.0",
-        "rollup-plugin-vue": "^2.5.2",
-        "vue-loader": "^13.0.5",
-        "vue-template-compiler": "^2.4.4",
-        "webpack": "^3.6.0",
-        "webpack-dev-server": "^2.9.1"
-    },
-    "types": "./types/index",
-    "typings": "./types/index",
-    "typeRoots": [
-        "node_modules/@types"
-    ],
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@tweenrex/debug",
+  "description": "Debug tools for TweenRex",
+  "homepage": "https://github.com/tweenrex/tweenrex#readme",
+  "version": "1.4.0",
+  "author": "TweenRex",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tweenrex/tweenrex/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tweenrex/tweenrex"
+  },
+  "scripts": {
+    "build": "rollup --config ./config/rollup.build.js",
+    "clean": "node_modules/.bin/del-cli -f lib",
+    "postversion": "git push --follow-tags && npm publish --access=\"public\"",
+    "preversion": "npm run rebuild",
+    "rebuild": "npm run clean && npm run build",
+    "start": "npm run test",
+    "test": "webpack-dev-server --open --hot --config ./config/webpack.test.config.js"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@tweenrex/core": "^1.4.0",
+    "@tweenrex/render": "^1.4.0",
+    "vue": "^2.4.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "del-cli": "^1.1.0",
+    "file-loader": "^1.1.4",
+    "just-curves": "^0.2.0",
+    "rollup": "^0.52.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-vue": "^2.5.2",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "types": "./types/index",
+  "typings": "./types/index",
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
